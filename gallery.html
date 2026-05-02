@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Family Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+      border-radius:8px;
+      margin-bottom:15px;
+      box-shadow:0 2px 8px rgba(0,0,0,0,0.)
+      
+    }
+
+    header {
+      background: #333;
+      color: white;
+      text-align: center;
+      font-size:90px;
+      padding: 30px;
+      border-radius:3px;
+      width:120%;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 70px;
+      padding: 70px;
+    }
+
+    .gallery img {
+      width: 200%;
+      height: 500px;
+      object-fit: cover;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1 style="font-size:32px"><b>Our Family Gallery</b></h1>
+</header>
+
+<div class="gallery">
+  <img src="ashraf.jpg"  alt="Family 1">
+  <br>
+  <img src="5.jpg" alt="Family 2">
+  <img src="4.jpg" alt="Family 3"><br>
+  <img src="3.jpg" alt="Family 4"><br>
+  <img src="1.jpg" alt="family 4"><br>
+  <img src="6.jpg" alt="family 6"><br>
+  <img src="7.jpg" alt="Family 7"><br>
+  <img src="8.jpg" alt="Family 8"><br>
+  <img src="9.jpg" alt="Family 9"><br>
+  <img src="10.jpg" alt="family 10">
+  <img src="11.jpg" alt="family 11"><br>
+  <img src="12.jpg" alt="family 12">
+</div>
+
+<div class="lightbox" id="lightbox">
+  <img src="" id="lightbox-img">
+</div>
+
+<script>
+  const images = document.querySelectorAll(".gallery img");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+
+  images.forEach(img => {
+    img.addEventListener("click", () => {
+      lightbox.classList.add("active");
+      lightboxImg.src = img.src;
+    });
+  });
+
+  lightbox.addEventListener("click", () => {
+    lightbox.classList.remove("active");
+  });
+</script>
+<head>
+    <style>
+        .back-btn{
+            position:absolute;
+            top: 0px;
+            left: 2px;
+            padding: 60px;
+            color: white;
+            background: green;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Back button -->
+    <button class="back-btn" onclick="window.location.href='ashra1.html'">BACK</button>
+    </body> Home</a>
+
+</body>
+</html>
