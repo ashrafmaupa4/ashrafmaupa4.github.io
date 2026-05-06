@@ -11,13 +11,14 @@
       background-size: cover;
       background-position: center;
       margin: 0;
-      font-family: times new roman;
+      font-family: 'Times New Roman', Times, serif;
     }
     
     nav {
       background-color: white;
       padding: 12px;
       text-align: left;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     
     nav a {
@@ -31,11 +32,20 @@
       color: green;
     }
     
+    #user-email {
+      float: right;
+      margin-right: 20px;
+      font-weight: normal;
+      color: #333;
+      line-height: 20px;
+    }
+    
     .overlay {
       background: rgba(0,0,0,0.5);
       color: white;
       padding: 30px;
       min-height: 100vh;
+      text-align: center;
     }
     
     footer {
@@ -45,12 +55,7 @@
       padding: 20px;
     }
     
-    .back-btn {
-      padding: 10px 20px;
-      background: #ea4335;
-      color: white;
-      border: none;
-      border-radius: 5px;
+    #logout-btn {
       cursor: pointer;
     }
   </style>
@@ -61,24 +66,23 @@
     <a href="#">About</a>
     <a href="#">Gallery</a>
     <a href="#" id="logout-btn">Logout</a>
-    <span id="user-email" style="float: right; margin-right: 20px;"></span>
+    <span id="user-email"></span>
   </nav>
 
   <div class="overlay">
     <h1>Welcome to Ashraf Family</h1>
     <p>This is your family website.</p>
+    <p>Only logged-in family members can see this page.</p>
   </div>
 
   <footer>
     <p>&copy; 2026 Ashraf Family</p>
   </footer>
 
-  <!-- Put this BEFORE </body> -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 
-    // SAME CONFIG AS LOGIN.HTML - MUST MATCH EXACTLY
     const firebaseConfig = {
       apiKey: "AIzaSyAC5gT6psm6h05o3YfV8HDcNeeFZWCZzn8",
       authDomain: "ashraf-family.firebaseapp.com",
@@ -96,8 +100,7 @@
       if (!user) {
         window.location.href = 'login.html';
       } else {
-        document.getElementById('user-email').innerText = 'Logged in: ' + user.email;
-        console.log("Logged in as:", user.email);
+        document.getElementById('user-email').innerText = user.email;
       }
     });
 
