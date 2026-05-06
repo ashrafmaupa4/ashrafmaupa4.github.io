@@ -43,7 +43,7 @@
         .then((userCredential) => {
           console.log("Success:", userCredential.user);
           alert('Logged in! Welcome ' + userCredential.user.email);
-          window.location.href = 'index.html'; // redirect to main page
+          window.location.href = 'index.html'; //no
         })
         .catch((error) => {
           console.error("Login error:", error.code, error.message);
