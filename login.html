@@ -43,7 +43,7 @@
         .then((userCredential) => {
           console.log("Success:", userCredential.user);
           alert('Logged in! Welcome ' + userCredential.user.email);
-          // window.location.href = 'home.html'; // uncomment to redirect
+          window.location.href = 'index.html'; // redirect to main page
         })
         .catch((error) => {
           console.error("Login error:", error.code, error.message);
@@ -59,7 +59,7 @@
 
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          console.log("Success:", userCredential.user);
+          console.log("Success:", userCredential.user);window.location.href = 'index.html';
           alert('Account created! Logged in as ' + userCredential.user.email);
         })
         .catch((error) => {
