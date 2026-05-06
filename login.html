@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,43 +6,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ashraf Family Login</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
+    body { 
+      font-family: Arial, sans-serif; 
+      background: #f4f4f4; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      min-height: 100vh; 
+      margin: 0; 
     }
-    .container {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      width: 300px;
+    .container { 
+      background: white; 
+      padding: 30px; 
+      border-radius: 10px; 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+      width: 300px; 
     }
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
+    h2 { 
+      text-align: center; 
+      margin-bottom: 20px; 
     }
-    input {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      box-sizing: border-box;
+    input { 
+      width: 100%; 
+      padding: 10px; 
+      margin: 8px 0; 
+      border: 1px solid #ddd; 
+      border-radius: 5px; 
+      box-sizing: border-box; 
     }
-    button {
-      width: 100%;
-      padding: 10px;
-      margin: 5px 0;
-      border: none;
-      border-radius: 5px;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
+    button { 
+      width: 100%; 
+      padding: 10px; 
+      margin: 5px 0; 
+      border: none; 
+      border-radius: 5px; 
+      color: white; 
+      font-size: 16px; 
+      cursor: pointer; 
     }
     #login-btn { background: #4285f4; }
     #login-btn:hover { background: #357ae8; }
@@ -54,61 +55,61 @@
     <h2>Ashraf Family Login</h2>
     <input type="email" id="email" placeholder="Email" required>
     <input type="password" id="password" placeholder="Password (6+ characters)" required>
-    <button id="login-btn">Login</button>
-    <button id="signup-btn">Sign Up</button>
+    <button type="button" id="login-btn">Login</button>
+    <button type="button" id="signup-btn">Sign Up</button>
   </div>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
-  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyAC5gT6psm6h05o3YfV8HDcNeeFZWCZzn8",
-    authDomain: "ashraf-family.firebaseapp.com",
-    projectId: "ashraf-family",
-    storageBucket: "ashraf-family.firebasestorage.app",
-    messagingSenderId: "1069088838050",
-    appId: "1:1069088838050:web:5f609f6d608da46db0e2fb",
-    measurementId: "G-LDVNKC8DJF"
-  };
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  
-  // Wait for page to load BEFORE attaching button clicks
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      await setPersistence(auth, browserLocalPersistence);
-      console.log("Firebase persistence set");
-    } catch (err) {
-      console.error("Persistence error:", err);
-    }
+    const firebaseConfig = {
+      apiKey: "AIzaSyAC5gT6psm6h05o3YfV8HDcNeeFZWCZzn8",
+      authDomain: "ashraf-family.firebaseapp.com",
+      projectId: "ashraf-family",
+      storageBucket: "ashraf-family.firebasestorage.app",
+      messagingSenderId: "1069088838050",
+      appId: "1:1069088838050:web:5f609f6d608da46db0e2fb",
+      measurementId: "G-LDVNKC8DJF"
+    };
 
-    document.getElementById('signup-btn').addEventListener('click', async () => {
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      if (!email || !password) return alert('Please enter email and password');
-      
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.addEventListener('DOMContentLoaded', async () => {
       try {
-        await createUserWithEmailAndPassword(auth, email, password);
-        window.location.href = 'index.html';
-      } catch (error) {
-        alert('Signup Error: ' + error.message);
+        await setPersistence(auth, browserLocalPersistence);
+        console.log("Firebase persistence set");
+      } catch (err) {
+        console.error("Persistence error:", err);
       }
-    });
 
-    document.getElementById('login-btn').addEventListener('click', async () => {
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      if (!email || !password) return alert('Please enter email and password');
-      
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        window.location.href = 'index.html';
-      } catch (error) {
-        alert('Login Error: ' + error.message);
-      }
+      document.getElementById('signup-btn').addEventListener('click', async () => {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        if (!email || !password) return alert('Please enter email and password');
+        
+        try {
+          await createUserWithEmailAndPassword(auth, email, password);
+          window.location.href = 'index.html';
+        } catch (error) {
+          alert('Signup Error: ' + error.message);
+        }
+      });
+
+      document.getElementById('login-btn').addEventListener('click', async () => {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        if (!email || !password) return alert('Please enter email and password');
+        
+        try {
+          await signInWithEmailAndPassword(auth, email, password);
+          window.location.href = 'index.html';
+        } catch (error) {
+          alert('Login Error: ' + error.message);
+        }
+      });
     });
-  });
-</script>
+  </script>
 </body>
 </html>
