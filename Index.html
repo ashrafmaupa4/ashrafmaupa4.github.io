@@ -66,7 +66,7 @@
     <a href="#">About</a>
     <a href="#">Gallery</a>
     <a href="#" id="logout-btn">Logout</a>
-    <span id="user-email"></span>
+    <span id="user-email">Loading...</span>
   </nav>
 
   <div class="overlay">
@@ -81,7 +81,7 @@
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+    import { getAuth, onAuthStateChanged, signOut, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAC5gT6psm6h05o3YfV8HDcNeeFZWCZzn8",
@@ -96,7 +96,18 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
+    // CRITICAL: Force Firebase to save login in browser storage
+    await setPersistence(auth, browserLocalPersistence);
+
+    let initialCheckDone = false;
+
     onAuthStateChanged(auth, (user) => {
+      // Ignore the first null while Firebase loads from storage
+      if (!initialCheckDone) {
+        initialCheckDone = true;
+        if (!user) return; // Don't redirect yet, wait for real state
+      }
+      
       if (!user) {
         window.location.href = 'login.html';
       } else {
