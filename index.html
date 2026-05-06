@@ -169,41 +169,32 @@
     
     <!-- SCRIPT 1: PROTECTION SCRIPT - This is the important one -->
     <script type="module">
-      import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-      import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+  import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 
-      const firebaseConfig = {
-        apiKey: "AIzaSyAC5gT6psm6h0o3YfV8HDcNeeFZWCZzn8",
-        authDomain: "ashraf-family.firebaseapp.com",
-        projectId: "ashraf-family",
-        storageBucket: "ashraf-family.firebasestorage.app",
-        messagingSenderId: "1069088838050",
-        appId: "1:1069088838050:web:5f609f6d608da46db0e2fb"
-      };
+  const firebaseConfig = {
+    apiKey: "AIzaSyAC5gT6psm6h0o3YfV8HDcNeeFZWCZzn8",
+    authDomain: "ashraf-family.firebaseapp.com",
+    projectId: "ashraf-family",
+    storageBucket: "ashraf-family.firebasestorage.app",
+    messagingSenderId: "1069088838050",
+    appId: "1:1069088838050:web:5f609f6d608da46db0e2fb"
+  };
 
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 
-      // This code checks if user is logged in
-      onAuthStateChanged(auth, (user) => {
-        if (!user) {
-          // If NOT logged in, go to login page
-          window.location.href = 'login.html';
-        }
-        // If user exists, do nothing and let them stay
-      });
-    </script>
-
-    <!-- SCRIPT 2: LOGOUT SCRIPT - The one you just fixed -->
-    <script type="module">
-      import { getAuth, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
-      
-      window.logout = () => {
-        const auth = getAuth();
-        signOut(auth).then(() => {
-          window.location.href = 'login.html';
-        });
-      }
+  // Wait for Firebase to fully load before checking
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      console.log("User logged in:", user.email); // For debugging
+      // User is signed in, stay on page
+    } else {
+      // Only redirect if we're 100% sure there's no user
+      console.log("No user found, redirecting...");
+      window.location.replace('login.html'); // replace = can't go back
+    }
+  });
     </script>
 
 </body>
