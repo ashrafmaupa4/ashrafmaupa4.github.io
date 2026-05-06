@@ -1,201 +1,118 @@
 <!DOCTYPE html>
-<html>
-    <title>my family</title>
-    
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Family</title>
   <style>
-      body{
-      background-image: url("me1.jpg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: left;
-      margin: 0;
-      font-family: times new roman;
+    body { 
+      background-image: url('ashraf.png'); 
+      background-repeat: no-repeat; 
+      background-size: cover; 
+      background-position: center; 
+      margin: 0; 
+      font-family: 'Times New Roman', Times, serif; 
     }
-
-    nav {
-      background-color: white;
-      padding: 14px;
-      text-align: center;
+    nav { 
+      background-color: white; 
+      padding: 12px; 
+      text-align: left; 
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
     }
-
-    nav a {
-      margin: 10px;
-      text-decoration: none;
-      color: black;
-      font-weight: bold;
+    nav a { 
+      margin: 10px; 
+      text-decoration: none; 
+      color: black; 
+      font-weight: bold; 
     }
-
-    nav a:hover {
-      color: green;
+    nav a:hover { color: green; }
+    #user-email { 
+      float: right; 
+      margin-right: 20px; 
+      font-weight: normal; 
+      color: #333; 
+      line-height: 20px; 
     }
-
-    .overlay {
-      background: rgba(0,0,0,0.6);
-      color: white;
-      padding: 10px;
-      min-height: 40vh;
+    .overlay { 
+      background: rgba(0,0,0,0.5); 
+      color: white; 
+      padding: 30px; 
+      min-height: 100vh; 
+      text-align: center; 
     }
-
-    footer {
-      background-color: black;
-      color: white;
-      text-align: center;
-      padding: 20px;
+    footer { 
+      background-color: black; 
+      color: white; 
+      text-align: center; 
+      padding: 20px; 
     }
-    
-    
-    </style>
+    #logout-btn { cursor: pointer; }
+  </style>
 </head>
-
-</body>
-  
-  <!-- NAVIGATION -->
+<body>
   <nav>
-    <a href="home.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="contact.html">Contact</a>
-    <a href="parent.html">Parent</a>
-    <a href="login.html" onclick="logout()" style="color:red; font-weight:bold;">logout</a> 
+    <a href="index.html">Home</a>
+    <a href="#">About</a>
+    <a href="#">Gallery</a>
+    <a href="#" id="logout-btn">Logout</a>
+    <span id="user-email">Loading...</span>
   </nav>
 
   <div class="overlay">
-
-    <!-- TITLE -->
-    <h1 style="color:limegreen; text-align:center;
-    font-size:60px;">
-      WELCOME TO MY FAMILY
-    </h1>
-      <!-- Put this BEFORE </body> in ashra1.html -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10."7.1/firebase-auth.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyAC5gT6psm6h05o3YfV8HDcNeeFZWCZzn8",
-    authDomain: "ashraf-family.firebaseapp.com",
-    projectId: "ashraf-family",
-    storageBucket: "ashraf-family.firebasestorage.app",
-    messagingSenderId: "1069088838050",
-    appId: "1:1069088838050:web:5f609f6d608da46db0e2fb"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  onAuthStateChanged(auth, (user) => {
-    if (!user) {
-      window.location.href = "login.html";
-    } else {
-      console.log("Logged in as:", user.email);
-    }
-  });
-</script>
-
-    <p align="center">NOTE: This is all about my family</p>
-
-    <h4 style="text-align:center;margin-bottom:90px;">We will begin with all</h4>
-
-    <!-- HISTORY -->
-    <h2 style="color:limegreen; text-align:center;">Our History</h2>
-
-    <p align="center">
-      <i>
-        Our family consists of four brothers: Ashraf, Shukran, Imran, Shelf,
-        along with our mother and father.
-      </i>
-    </p>
-
-    <!-- IMAGE -->
-    
-    
-    <div style="text-align:center" "color:white">
-      <img src="" width="500">
-      
-      <p>Click to see pic</p>
-    </div>
-
+    <h1>Welcome to Ashraf Family</h1>
+    <p>This is your family website.</p>
+    <p>Only logged-in family members can see this page.</p>
   </div>
-  <body background="me1.jpg">
-      <style>{
-          background:rgba(0,0,0,0,6)
-          color:white;
-          padding:10px;
-          min hieght:60vh;
+
+  <footer>
+    <p>&copy; 2026 Ashraf Family</p>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAC5gT6psm6h05o3YfV8HDcNeeFZWCZzn8",
+      authDomain: "ashraf-family.firebaseapp.com",
+      projectId: "ashraf-family",
+      storageBucket: "ashraf-family.firebasestorage.app",
+      messagingSenderId: "1069088838050",
+      appId: "1:1069088838050:web:5f609f6d608da46db0e2fb",
+      measurementId: "G-LDVNKC8DJF"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        await setPersistence(auth, browserLocalPersistence);
+      } catch (err) {
+        console.error("Persistence error:", err);
+      }
+
+      let initialCheckDone = false;
+      onAuthStateChanged(auth, (user) => {
+        if (!initialCheckDone) {
+          initialCheckDone = true;
+          if (!user) return;
         }
-      </style>
-  </body>
-
-<head>
-  <style>
-    .heart {
-      color: red !important;
-      font-size: 20px;
-    }
-    </style>
-    </head>
-  
-
-<footer>
-  <p>thank you for visiting my website</p>
-
-  <p>
-    <span class="heart">♡</span> together we will thrive
-  </p>
-
-  <p>© 2026 My Website. All rights reserved.</p>
-</footer>
-<head>
-    <style>
-        .back-btn{
-            position: fixed;
-            top: 0px;
-            right: 1px;
-            padding: 15px;
-            color: white;
-            background: green;
-            cursor: pointer;
+        
+        if (!user) {
+          window.location.href = 'login.html';
+        } else {
+          document.getElementById('user-email').innerText = user.email;
         }
-    </style>
-    
-</head>
+      });
 
-<body>
-
-    <!-- Back button -->
-    <button class="back-btn" onclick="history.back()">Back</button>
-
-        <!-- Your footer, back button, nav menu etc goes here -->
-    
-    <!-- SCRIPT 1: PROTECTION SCRIPT - This is the important one -->
-    <script type="module">
-  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-  import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyAC5gT6psm6h0o3YfV8HDcNeeFZWCZzn8",
-    authDomain: "ashraf-family.firebaseapp.com",
-    projectId: "ashraf-family",
-    storageBucket: "ashraf-family.firebasestorage.app",
-    messagingSenderId: "1069088838050",
-    appId: "1:1069088838050:web:5f609f6d608da46db0e2fb"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  // Wait for Firebase to fully load before checking
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-      console.log("User logged in:", user.email); // For debugging
-      // User is signed in, stay on page
-    } else {
-      // Only redirect if we're 100% sure there's no user
-      console.log("No user found, redirecting...");
-      window.location.replace('login.html'); // replace = can't go back
-    }
-  });
-    </script>
-
+      document.getElementById('logout-btn').addEventListener('click', (e) => {
+        e.preventDefault();
+        signOut(auth).then(() => {
+          window.location.href = 'login.html';
+        });
+      });
+    });
+  </script>
 </body>
 </html>
